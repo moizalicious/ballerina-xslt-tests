@@ -6,16 +6,15 @@ import ballerina.lang.xmls;
 import ballerina.lang.system;
 
 
-function case7 () {
-    string FILE_PATH = "resources/case7/";
+function runTransformationInPackage (string filePath) {
 
-    files:File xmlFile = {path: FILE_PATH + "input.xml"};
+    files:File xmlFile = {path: filePath + "/input.xml"};
     files:open(xmlFile, "r");
     var content, n = files:read(xmlFile, 1000000);
     string s = blobs:toString(content, "utf-8");
     xml xmlIn = xmls:parse(s);
 
-    files:File xslFile = {path: FILE_PATH + "input.xsl"};
+    files:File xslFile = {path: filePath + "/input.xsl"};
     files:open(xslFile, "r");
     content, n = files:read(xslFile, 1000000);
     s = blobs:toString(content, "utf-8");
