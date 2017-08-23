@@ -1,4 +1,4 @@
-package org.ballerinalang.test;
+package org.ballerinalang.test.whenTransforming;
 
 import ballerina.lang.files;
 import ballerina.lang.blobs;
