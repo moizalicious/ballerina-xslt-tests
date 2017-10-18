@@ -1,6 +1,7 @@
 package org.ballerinalang.test.whenTransforming;
 
 import ballerina.lang.system;
+import ballerina.lang.xmls;
 
 function main (string[] args) {
     system:println("Case 1 - Converting XML to another form of XML (Single-Root output)");
@@ -52,9 +53,9 @@ function main (string[] args) {
     //system:println(out3);
     //
     //system:println("\n Case 14 - Entering an valid but untransformable XML & XSL values");
-    //xml x5 = xmls:parse("This is a plain text XML node");
-    //xml x6 = xmls:parse("This is a plain text XML node");
-    //xml out3 = xmls:transformXML(x5, x6);
-    //system:println(out3);
+    //xml x7 = xmls:parse("This is a plain text XML node");
+    //xml x8 = xmls:parse("This is a plain text XML node");
+    //xml out4 = xmls:transformXML(x7, x8);
+    //system:println(out4);
 
 }
