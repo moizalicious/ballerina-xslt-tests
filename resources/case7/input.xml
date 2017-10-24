@@ -1,9 +1,16 @@
-<catalog>
-  <cd>
-    <title>Empire Burlesque</title>
-    <artist>Bob Dylan</artist>
-    <country>USA</country>
-    <company>Columbia</company>
-    <price>10.90</price>
-    <year>1985</year>
-</catalog>
+<EMPLOYEE_LIST>
+  <EMPLOYEES>
+    <PERMANENT>
+      <EMPID>650000</EMPID>
+      <FIRST_NAME>KEITH</FIRST_NAME>
+      <MIDDLE_NAME>H</MIDDLE_NAME>
+      <LAST_NAME>ROGERS</LAST_NAME>
+    </PERMANENT>
+    <CONTRACTUAL>
+      <EMPID>650001</EMPID>
+      <FIRST_NAME>DARRYL</FIRST_NAME>
+      <MIDDLE_NAME>Y</MIDDLE_NAME>
+      <LAST_NAME>HANNAH</LAST_NAME>
+    </CONTRACTUAL>
+  </EMPLOYEES>
+</EMPLOYEE_LIST>
