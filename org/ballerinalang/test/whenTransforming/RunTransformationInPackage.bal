@@ -1,26 +1,27 @@
 package org.ballerinalang.test.whenTransforming;
 
-import ballerina.lang.files;
-import ballerina.lang.blobs;
-import ballerina.lang.xmls;
-import ballerina.lang.system;
-
+import ballerina.file;
+import ballerina.io;
 
 function runTransformationInPackage (string filePath) {
 
-    files:File xmlFile = {path: filePath + "/input.xml"};
-    files:open(xmlFile, "r");
-    var content, n = files:read(xmlFile, 1000000);
-    string s = blobs:toString(content, "utf-8");
-    xml xmlIn = xmls:parse(s);
+    io:ByteChannel byteChannel;
+    blob bytes;
+    int numberOfBytes;
+    string s;
 
-    files:File xslFile = {path: filePath + "/input.xsl"};
-    files:open(xslFile, "r");
-    content, n = files:read(xslFile, 1000000);
-    s = blobs:toString(content, "utf-8");
-    xml xsl = xmls:parse(s);
+    file:File xmlFile = {path: filePath + "/input.xml"};
+    byteChannel = xmlFile.openChannel("r");
+    bytes, numberOfBytes = byteChannel.readBytes(100000);
+    s = bytes.toString("UTF-8");
+    var xmlIn, _ = <xml> s;
 
-    xml xmlOut = xmls:transformXML(xmlIn, xsl);
-    system:println(xmlOut);
+    file:File xslFile = {path: filePath + "/input.xsl"};
+    byteChannel = xslFile.openChannel("r");
+    bytes, numberOfBytes = byteChannel.readBytes(100000);
+    s = bytes.toString("UTF-8");
+    var xslIn, _ = <xml> s;
 
+    xml xmlOut = xmlIn.performXSLT(xslIn);
+    println(xmlOut);
 }
