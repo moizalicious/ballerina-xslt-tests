@@ -1,0 +1,12 @@
+<employees>
+<emp_id>650000</emp_id>
+<f_name>KEITH</f_name>
+<m_name>H</m_name>
+<l_name>ROGERS</l_name>
+<type>permanent</type>
+<emp_id>650001</emp_id>
+<f_name>DARRYL</f_name>
+<m_name>Y</m_name>
+<l_name>HANNAH</l_name>
+<type>contractual</type>
+</employees>
