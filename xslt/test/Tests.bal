@@ -11,9 +11,6 @@ public function runTests () {
     testTransformToText();
     testTransformTwoValidRelated();
     testTransformTwoValidUnrelated();
-    testTransformInvalidXML();
-    testTransformInvalidXSL();
-    testTransformInvalidXMLAndXSL();
     testTransformEmptyXML();
     testTransformEmptyXSL();
     testTransformEmptyXMLAndXSL();
@@ -30,6 +27,9 @@ function testTransformToXML () {
     string expected = util:readFileAsString("xslt/res/ToXML.txt");
 
     test:assertStringEquals(result, expected, "error when attempting to transform an xml to another form of xml;");
+
+    println(result);
+    println("");
 }
 
 function testTransformToXMLNoRoot () {
@@ -41,7 +41,8 @@ function testTransformToXMLNoRoot () {
 
     test:assertStringEquals(result, expected, "error when attempting to transform xml to another xml with no root;");
 
-
+    println(result);
+    println("");
 }
 
 function testTransformToHTML () {
@@ -53,6 +54,8 @@ function testTransformToHTML () {
 
     test:assertStringEquals(result, expected, "error when attempting to transform xml to html;");
 
+    println(result);
+    println("");
 }
 
 function testTransformToHTMLNoRoot () {
@@ -64,6 +67,8 @@ function testTransformToHTMLNoRoot () {
 
     test:assertStringEquals(result, expected, "error when attempting to transform xml to html with no root;");
 
+    println(result);
+    println("");
 }
 
 function testTransformToText () {
@@ -72,7 +77,11 @@ function testTransformToText () {
 
     string result = <string>x.performXSLT(xsl);
     string expected = "The Dilbert PrincipleScott Adams";
+
     test:assertStringEquals(result, expected, "error when attempting to transform xml to text;");
+
+    println(result);
+    println("");
 }
 
 function testTransformTwoValidRelated () {
@@ -83,6 +92,9 @@ function testTransformTwoValidRelated () {
     string expected = util:readFileAsString("xslt/res/TwoValidRelated.txt");
 
     test:assertStringEquals(result, expected, "error when attempting to transform two valid and related arguments;");
+
+    println(result);
+    println("");
 }
 
 function testTransformTwoValidUnrelated () {
@@ -92,32 +104,55 @@ function testTransformTwoValidUnrelated () {
     xml result = x.performXSLT(xsl);
 
     test:assertTrue(result == null, "error when attempting to tranform two unrelated arguments;");
-}
 
-function testTransformInvalidXML () {
-
-}
-
-function testTransformInvalidXSL () {
-
-}
-
-function testTransformInvalidXMLAndXSL () {
-
+    println(result);
+    println("");
 }
 
 function testTransformEmptyXML () {
+    xml x = null;
+    xml xsl = util:readFileAsXML("xslt/res/TwoValidUnrelated.xsl");
 
+    try {
+        xml result = x.performXSLT(xsl);
+    } catch (error e) {
+        println(e.msg);
+        println("");
+    }
 }
 
 function testTransformEmptyXSL () {
+    xml x = util:readFileAsXML("xslt/res/TwoValidUnrelated.xml");
+    xml xsl = null;
 
+    try {
+        xml result = x.performXSLT(xsl);
+    } catch (error e) {
+        println(e.msg);
+        println("");
+    }
 }
 
 function testTransformEmptyXMLAndXSL () {
+    xml x = null;
+    xml xsl = null;
 
+    try {
+        xml result = x.performXSLT(xsl);
+    } catch (error e) {
+        println(e.msg);
+        println("");
+    }
 }
 
 function testTransformUntransformable () {
+    xml x = xml `<xmlelement></xmlelement>`;
+    xml xsl = xml `<xslelement></xslelement>`;
 
+    try {
+        xml result = x.performXSLT(xsl);
+    } catch (error e) {
+        println(e.msg);
+        println("");
+    }
 }
