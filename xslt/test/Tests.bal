@@ -15,6 +15,7 @@ public function runTests () {
     testTransformEmptyXSL();
     testTransformEmptyXMLAndXSL();
     testTransformUntransformable();
+    testTransformWithNoSingletonArgs();
 
     println("14 Tests Successful");
 }
@@ -149,6 +150,18 @@ function testTransformUntransformable () {
     xml x = xml `<xmlelement></xmlelement>`;
     xml xsl = xml `<xslelement></xslelement>`;
 
+    try {
+        xml result = x.performXSLT(xsl);
+    } catch (error e) {
+        println(e.msg);
+        println("");
+    }
+}
+
+function testTransformWithNoSingletonArgs() {
+    xml x = xml `<root><element1>This is element 1</element1><element2>This is element 2</element2></root>`;
+    x = x.children().elements();
+    xml xsl = util:readFileAsXML("xslt/res/TwoValidUnrelated.xml");
     try {
         xml result = x.performXSLT(xsl);
     } catch (error e) {
